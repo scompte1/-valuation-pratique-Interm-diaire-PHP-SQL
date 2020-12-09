@@ -81,6 +81,15 @@ function validateLogementForm(string $titre, string $adresse, string $ville, int
     return $errors;
 }
 
+// Formatte un prix à la française
+function format_price(float $price): string
+{
+    return number_format($price, 0, ',', ' ') . ' €';
+    //$formatter = new NumberFormatter('fr_FR', NumberFormatter::CURRENCY);
+    //return $formatter->formatCurrency($price, 'EUR');
+}
+
+// Insère un logement dans la BDD
 function insertLogement(string $titre, string $adresse, string $ville, int $cp, int $surface, int $prix, string $photo, string $type, string $description)
 {
     $sql = 'INSERT INTO logement (titre, adresse, ville, cp, surface, prix, photo, type, description)
@@ -106,18 +115,21 @@ function selectOne(string $sql, array $criteria = [])
     return $query->fetch();
 }
 
+// Récupère les données de tous les logements
 function getAllLogements()
 {
     $sql = 'SELECT id_logement, titre, adresse, ville, cp, surface, prix, photo, type, description
             FROM logement';
-        
+
     return selectAll($sql);
 }
 
-// Formatte un prix à la française
-function format_price(float $price): string
+// Récupère les données d'un logement par son ID
+function getLogementById(int $id)
 {
-    return number_format($price, 0, ',', ' ') . ' €';
-    //$formatter = new NumberFormatter('fr_FR', NumberFormatter::CURRENCY);
-    //return $formatter->formatCurrency($price, 'EUR');
+    $sql = 'SELECT id_logement, titre, adresse, ville, cp, surface, prix, photo, type, description
+            FROM logement
+            WHERE id_logement = ?';
+
+    return selectOne($sql, [$id]);
 }
