@@ -27,7 +27,7 @@ if (!empty($_POST)) {
     if (empty($errors)) {
 
         // Insertion du logement dans la BDD
-        insertLogement($titre, $adresse, $ville, $cp, $surface, $prix, $photo, $type, $description);
+        insertLogement($titre, $adresse, $ville, $cp, $surface, $prix, $photo, $type, $description);        
         header('Location: index.php');
         exit;
     }

@@ -40,7 +40,7 @@ function prepareAndExecuteQuery(string $sql, array $criteria = []): PDOStatement
 }
 
 // Validation des champs du formulaire
-function validateLogementForm(string $titre, string $adresse, string $ville, int $cp, $surface, $prix, string $type)
+function validateLogementForm($titre, $adresse, $ville, $cp, $surface, $prix, $type)
 {
     $errors = [];
 
