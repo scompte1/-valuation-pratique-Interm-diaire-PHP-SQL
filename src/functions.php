@@ -58,7 +58,7 @@ function validateLogementForm(string $titre, string $adresse, string $ville, int
 
     if (!$cp) {
         $errors[] = 'Le code postal du logement est obligatoire';
-    } else if (!is_numeric($cp) || $cp < 0) {
+    } else if (!is_numeric($cp) || $cp < 0 || $cp > 99999) {
         $errors[] = 'Le code postal est incorrecte';
     }
 
@@ -87,4 +87,37 @@ function insertLogement(string $titre, string $adresse, string $ville, int $cp, 
             VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
     prepareAndExecuteQuery($sql, [$titre, $adresse, $ville, $cp, $surface, $prix, $photo, $type, $description]);
+}
+
+// Exécute une requête de sélection et retourne plusieurs résultats
+function selectAll(string $sql, array $criteria = [])
+{
+    $query = prepareAndExecuteQuery($sql, $criteria);
+
+    return $query->fetchAll();
+}
+
+
+// Exécute une requête de sélection et retourne UN résultat
+function selectOne(string $sql, array $criteria = [])
+{
+    $query = prepareAndExecuteQuery($sql, $criteria);
+
+    return $query->fetch();
+}
+
+function getAllLogements()
+{
+    $sql = 'SELECT id_logement, titre, adresse, ville, cp, surface, prix, photo, type, description
+            FROM logement';
+        
+    return selectAll($sql);
+}
+
+// Formatte un prix à la française
+function format_price(float $price): string
+{
+    return number_format($price, 0, ',', ' ') . ' €';
+    //$formatter = new NumberFormatter('fr_FR', NumberFormatter::CURRENCY);
+    //return $formatter->formatCurrency($price, 'EUR');
 }

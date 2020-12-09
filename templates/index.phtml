@@ -31,12 +31,25 @@
         </nav>
     </header>
 
-    <main>
-        <?php if (!empty($flashMessages)) : ?>
-            <?php foreach ($flashMessages as $message) : ?>
-                <p class="alert alert-success"><?= $message; ?></p>
+    <main class="container">
+        <h1 class="text-center h2 mt-3 text-warning mb-5">Bienvenue sur la page d'accueil</h1>
+        <section class="row">
+            <?php foreach ($logements as $logement) : ?>
+                <div class="col-md-4 mb-4">
+                    <div class="card" style="width: 18rem;">
+                        <img src="images/<?= htmlspecialchars($logement['photo']); ?>" class="card-img-top" alt="...">
+                        <div class="card-body">
+                            <h5 class="card-title"><?= htmlspecialchars($logement['titre']); ?></h5>
+                            <p class="card-text fw-bold mb-0"><?= format_price($logement['prix']); ?></p>
+                            <p class="card-text fw-bold mb-0"><?= htmlspecialchars($logement['ville']); ?></p>
+                            <p class="card-text mb-0"><?= htmlspecialchars(substr($logement['description'], 0, 60)); ?>...</p>
+                            <p class="card-text badge bg-success"><?= htmlspecialchars($logement['type']); ?></p>
+                            <a href="detail_logement.php?id=<?= intval($logement['id_logement']); ?>" class="btn btn-warning d-block">Voir le détail</a>
+                        </div>
+                    </div>
+                </div>
             <?php endforeach; ?>
-        <?php endif; ?>
+        </section>
     </main>
 
     <footer class="py-5 bg-dark">

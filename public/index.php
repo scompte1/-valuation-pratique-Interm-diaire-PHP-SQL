@@ -4,12 +4,8 @@
 require '../vendor/autoload.php';
 require '../src/functions.php';
 
-
-
-
-
-
-
+// Sélection des logements
+$logements = getAllLogements();
 
 
 
