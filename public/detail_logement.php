@@ -10,9 +10,11 @@ if (!isset($_GET['id'])) {
     exit;
 }
 
+// Récupère l'id dans l'URL
 $logementId = intval($_GET['id']);
 
 // Requête de sélection du logement selon l'id
 $logement = getLogementById($logementId);
 
+// Inclusion du template
 include '../templates/detail_logement.phtml';

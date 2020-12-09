@@ -27,10 +27,12 @@ if (!empty($_POST)) {
     if (empty($errors)) {
 
         // Insertion du logement dans la BDD
-        insertLogement($titre, $adresse, $ville, $cp, $surface, $prix, $photo, $type, $description);        
+        insertLogement($titre, $adresse, $ville, $cp, $surface, $prix, $photo, $type, $description);
+        // Redirection
         header('Location: index.php');
         exit;
     }
 }
 
+// Inclusion du template
 include '../templates/add_logement.phtml';

@@ -58,7 +58,7 @@ function validateLogementForm($titre, $adresse, $ville, $cp, $surface, $prix, $t
 
     if (!$cp) {
         $errors[] = 'Le code postal du logement est obligatoire';
-    } else if (!is_numeric($cp) || $cp < 0 || $cp > 99999) {
+    } else if (!is_numeric($cp) || $cp < 999 || $cp > 99999) {
         $errors[] = 'Le code postal est incorrecte';
     }
 

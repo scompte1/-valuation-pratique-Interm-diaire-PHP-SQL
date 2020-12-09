@@ -8,6 +8,5 @@ require '../src/functions.php';
 $logements = getAllLogements();
 
 
-
-
+// Inclusion du template
 include '../templates/index.phtml';

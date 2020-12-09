@@ -33,6 +33,7 @@
 
     <main class="container">
         <h1 class="text-center h2 mt-3 text-warning mb-5">Logement n°<?= intval($logement['id_logement']); ?></h1>
+        <!-- Affichage des détails du logement -->
         <img src="images/<?= htmlspecialchars($logement['photo']); ?>" alt="" class="d-block mx-auto w-75">
         <div class="text-center">
             <h2 class="mt-3"><?= htmlspecialchars($logement['titre']); ?></h2>
